@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clerkId      String         @unique
   email        String         @unique
   firstname    String?        @unique
@@ -26,7 +26,7 @@ model User {
 }
 
 model Subscription {
-  id         String            @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   User       User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String            @unique @db.Uuid
   createdAt  DateTime          @default(now())
@@ -36,7 +36,7 @@ model Subscription {
 }
 
 model Integrations {
-  id          String       @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        INTEGRATIONS @default(INSTAGRAM)
   createdAt   DateTime     @default(now())
   User        User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -47,7 +47,7 @@ model Integrations {
 }
 
 model Automation {
-  id        String    @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name      String    @default("Untitled")
   createdAt DateTime  @default(now())
   active    Boolean   @default(false)
@@ -61,7 +61,7 @@ model Automation {
 }
 
 model Dms {
-  id           String      @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
   automationId String?     @db.Uuid
   createdAt    DateTime    @default(now())
@@ -71,7 +71,7 @@ model Dms {
 }
 
 model Post {
-  id           String      @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   postId       String
   caption      String?
   media        String
@@ -81,25 +81,25 @@ model Post {
 }
 
 model Trigger {
-  id           String      @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type         String
   Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
   automationId String?     @db.Uuid
 }
 
 model Listener {
-  id           String      @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   Automation   Automation @relation(fields: [automationId], references: [id], onDelete: Cascade)
   automationId String     @unique @db.Uuid
-  listener     LISTENERS   @default(MESSAGE)
+  listener     LISTENERS  @default(MESSAGE)
   promt        String
   commentReply String?
-  dmCount      Int         @default(0)
-  commentCount Int         @default(0)
+  dmCount      Int        @default(0)
+  commentCount Int        @default(0)
 }
 
 model Keyword {
-  id           String      @id @default(dbgenerated("gen_randon_uuid()")) @db.Uuid
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   word         String
   Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
   automationId String?     @db.Uuid
