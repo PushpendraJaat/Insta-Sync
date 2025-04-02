@@ -1,5 +1,4 @@
-import { Chilanka } from 'next/font/google'
-import React, { Children } from 'react'
+import React from 'react'
 
 type Props = {
     children: React.ReactNode

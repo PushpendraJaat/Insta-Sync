@@ -51,7 +51,7 @@ const Sidebar = ({ slug, state }: Props) => {
                     </div>
                     <SubscriptionPlan type='FREE'>
                         <div className='flex-1 flex flex-col justify-end'>
-                            <UpgradeCard></UpgradeCard>
+                            <UpgradeCard />
                         </div>
                     </SubscriptionPlan>
                 </div>
