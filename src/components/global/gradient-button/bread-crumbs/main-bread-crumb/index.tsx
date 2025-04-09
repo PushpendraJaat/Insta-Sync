@@ -17,7 +17,7 @@ const MainBreadCrumb = ({ page, slug }: Props) => {
                     </div>
                 </div>
                 )}
-            <span className='radial--gradient inline-flex py-5 lg:py-10 pr-16 gap-x-2 items-center'>
+            <span className='radial--gradient inline-flex py-5 lg:py-10 pr-16 gap-x-2 items-center lg:ml-4'>
                 {
                     PAGE_ICON[page.toUpperCase()]
                 }

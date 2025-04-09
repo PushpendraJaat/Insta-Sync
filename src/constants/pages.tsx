@@ -17,7 +17,7 @@ type Props = {
 }
 
 export const PAGE_ICON: Props = {
-    AUTOMANTIONS: <AutomationDualToneIcon />,
+    AUTOMATIONS: <AutomationDualToneIcon />,
     CONTACTS: <ContactsDualToneIcon />,
     INTEGRATIONS: <IntegrationDualToneIcon/>,
     SETTINGS: <SettingsDualToneIcon/>,
