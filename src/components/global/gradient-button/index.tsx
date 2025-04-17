@@ -32,12 +32,6 @@ const GradientButton = ({ children, type, href, className}: Props) => {
     default:
       return null
   }
-
-  return (
-    <div className=''>
-      
-    </div>
-  )
 }
 
 export default GradientButton
