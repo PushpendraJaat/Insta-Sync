@@ -2,7 +2,7 @@
 
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { findUser } from "./queries"
+import { createUser, findUser } from "./queries"
 import { refressToken } from "@/lib/fetch"
 import { updateIntegration } from "../integrations/queries"
 
@@ -46,8 +46,33 @@ export const onBoardUser = async () => {
         },
       }
     }
-    // const created = await createUser
+    const created = await createUser(
+      user.id,
+      user.firstName!,
+      user.lastName!,
+      user.emailAddresses[0].emailAddress
+    )
+    return {
+      status: 201,
+      data: created
+    }
   } catch (error) {
     console.log('error on boarding user', error)
+    return {
+      status: 500
+    }
+  }
+}
+
+export const onUserInfo = async () => {
+  const user = await onCurrentUser()
+  try {
+    const profile = await findUser(user.id)
+    if(profile) return { status: 200, data: profile }
+
+    return { status: 404 }
+  } catch (error) {
+    console.log('on user info error', error)
+    return {status: 500}
   }
 }
