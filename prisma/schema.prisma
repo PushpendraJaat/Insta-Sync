@@ -92,7 +92,7 @@ model Listener {
   Automation   Automation @relation(fields: [automationId], references: [id], onDelete: Cascade)
   automationId String     @unique @db.Uuid
   listener     LISTENERS  @default(MESSAGE)
-  promt        String
+  prompt       String
   commentReply String?
   dmCount      Int        @default(0)
   commentCount Int        @default(0)

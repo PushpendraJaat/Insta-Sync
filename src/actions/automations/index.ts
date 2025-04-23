@@ -2,7 +2,8 @@
 
 import { currentUser } from "@clerk/nextjs/server"
 import { onCurrentUser } from "../user"
-import { createAutomation, findAutomation, getAutomations, updateAutomation } from "./queries"
+import { addListener, createAutomation, findAutomation, getAutomations, updateAutomation } from "./queries"
+
 
 export const createAutomations = async (id?: string) => {
   const user = await onCurrentUser()
@@ -58,5 +59,22 @@ export const updateAutomationName = async (
     return { status: 404, data:'Oops! could not find automation'}
   } catch (error) {
     return { status: 500, data:'Server error'}
+  }
+}
+
+export const saveListener = async (
+  automationId: string,
+  listener: 'SMARTAI' | 'MESSAGE',
+  prompt: string,
+  reply?: string
+) => {
+  await onCurrentUser()
+  try {
+    const create = await addListener(automationId, listener, prompt, reply)
+    if (create) return { status: 200, data: 'Listener created.'}
+
+    return { status: 404, data: 'Cant save Listener.'}
+  } catch (error) {
+    return { status: 500, data: 'Something went wrong'}
   }
 }
